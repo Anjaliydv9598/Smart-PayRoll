@@ -7,17 +7,17 @@ import lombok.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "attendance")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name = "attendance")
 public class Attendance {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private  Long id;
 
     @ManyToOne
     @JoinColumn(name = "emp_id", nullable = false)
@@ -26,16 +26,19 @@ public class Attendance {
     @Column(name = "attendance_date", nullable = false)
     private LocalDate attendanceDate;
 
-    @Column(name = "punch_in")
     private LocalDateTime punchIn;
 
-    @Column(name = "punch_out")
     private LocalDateTime punchOut;
 
-    @Column(name = "working_hours")
     private Double workingHours;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "status")
+    @Column(nullable = false)
     private AttendanceStatus status;
+
+    private String correctionReason;
+
+    private String modifiedBy;
+
+    private LocalDateTime modifiedAt;
 }

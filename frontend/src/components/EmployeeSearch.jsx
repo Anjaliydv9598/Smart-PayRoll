@@ -85,7 +85,6 @@ function EmployeeSearch({ setEmployees }) {
 
             </div>
 
-
             <div className="search-input">
 
                 <label>Search Employee</label>
@@ -109,7 +108,6 @@ function EmployeeSearch({ setEmployees }) {
                 />
 
             </div>
-
 
             <button
                 className="search-button"

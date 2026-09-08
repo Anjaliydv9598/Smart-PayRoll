@@ -3,17 +3,13 @@ function EmployeeTable({ employees }) {
     if (employees.length === 0) {
         return (
             <div className="empty-state">
-
-                <div className="empty-icon">
-                    👥
-                </div>
+                <div className="empty-icon">👥</div>
 
                 <h3>No employees to display</h3>
 
                 <p>
                     Use the search above to find employee records.
                 </p>
-
             </div>
         );
     }
@@ -22,20 +18,24 @@ function EmployeeTable({ employees }) {
         <div className="employee-table-card">
 
             <div className="table-header">
+
                 <div>
+
                     <p className="small-heading">
                         EMPLOYEE RECORDS
                     </p>
 
-                    <h2>
-                        Search Results
-                    </h2>
+                    <h2>Search Results</h2>
+
                 </div>
 
                 <span className="result-count">
-          {employees.length} record
+
+                    {employees.length} record
                     {employees.length !== 1 ? "s" : ""}
-        </span>
+
+                </span>
+
             </div>
 
 
@@ -77,9 +77,9 @@ function EmployeeTable({ employees }) {
                             </td>
 
                             <td>
-                  <span className="role-badge">
-                    {employee.role}
-                  </span>
+                                <span className="role-badge">
+                                    {employee.role}
+                                </span>
                             </td>
 
                             <td>
@@ -95,7 +95,11 @@ function EmployeeTable({ employees }) {
                             </td>
 
                             <td>
-                                ₹{employee.basic?.toLocaleString("en-IN")}
+                                ₹
+                                {employee.basic
+                                    ? Number(employee.basic)
+                                        .toLocaleString("en-IN")
+                                    : "0"}
                             </td>
 
                         </tr>

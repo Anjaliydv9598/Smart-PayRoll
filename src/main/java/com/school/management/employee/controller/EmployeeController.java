@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/employees")
+@CrossOrigin(origins = "http://localhost:5173")
 public class EmployeeController {
 
     private final EmployeeService employeeService;
@@ -18,7 +19,7 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
-// Create employee
+    // Create employee
     @PostMapping
     public Employee saveEmployee(@RequestBody EmployeeRequest request) {
         return employeeService.saveEmployee(request);

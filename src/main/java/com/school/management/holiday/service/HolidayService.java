@@ -2,90 +2,31 @@ package com.school.management.holiday.service;
 
 import com.school.management.exception.HolidayAlreadyExistsException;
 import com.school.management.exception.HolidayNotFoundException;
-import com.school.management.holiday.client.ExternalHolidayResponse;
-import com.school.management.holiday.client.HolidayApiClient;
 import com.school.management.holiday.dto.HolidayRequest;
 import com.school.management.holiday.entity.Holiday;
-import com.school.management.holiday.entity.HolidayType;
 import com.school.management.holiday.repository.HolidayRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class HolidayService {
 
     private final HolidayRepository holidayRepository;
-    private final HolidayApiClient holidayApiClient;
 
+    public List<Holiday> getHolidays(int year) {
 
-    // =========================
-    // IMPORT HOLIDAYS FROM API
-    // =========================
+        LocalDate startDate = LocalDate.of(year, 1, 1);
+        LocalDate endDate = LocalDate.of(year, 12, 31);
 
-    public int importHolidays(int year) {
-
-        String countryCode = "IN";
-
-        var holidays =
-                holidayApiClient.getHolidays(countryCode, year);
-
-        if (holidays == null || holidays.isEmpty()) {
-            return 0;
-        }
-
-        int importedCount = 0;
-
-        for (ExternalHolidayResponse externalHoliday : holidays) {
-
-            boolean exists =
-                    holidayRepository.existsByHolidayDateAndHolidayName(
-                            externalHoliday.date(),
-                            externalHoliday.name()
-                    );
-
-            if (!exists) {
-
-                Holiday holiday = new Holiday();
-
-                holiday.setHolidayDate(externalHoliday.date());
-                holiday.setHolidayName(externalHoliday.name());
-
-                holiday.setHolidayType(
-                        mapHolidayType(externalHoliday)
-                );
-
-                holiday.setSource("TALLYFY_API");
-
-                holidayRepository.save(holiday);
-
-                importedCount++;
-            }
-        }
-
-        return importedCount;
+        return holidayRepository.findByHolidayDateBetween(
+                startDate,
+                endDate
+        );
     }
-
-    // =========================
-    // MAP API HOLIDAY TYPE
-    // =========================
-
-    private HolidayType mapHolidayType(
-            ExternalHolidayResponse externalHoliday) {
-
-        if (externalHoliday.type() != null
-                && externalHoliday.type().equalsIgnoreCase("national")) {
-
-            return HolidayType.GOVERNMENT;
-        }
-
-        return HolidayType.TRADITIONAL;
-    }
-
-
-    // =========================
-    // ADMIN ADD HOLIDAY
-    // =========================
 
     public Holiday addHoliday(HolidayRequest request) {
 
@@ -111,11 +52,6 @@ public class HolidayService {
         return holidayRepository.save(holiday);
     }
 
-
-    // =========================
-    // ADMIN UPDATE HOLIDAY
-    // =========================
-
     public Holiday updateHoliday(
             Long id,
             HolidayRequest request) {
@@ -127,6 +63,20 @@ public class HolidayService {
                                         "Holiday not found with id: " + id
                                 ));
 
+        boolean duplicate =
+                holidayRepository
+                        .existsByHolidayDateAndHolidayNameAndIdNot(
+                                request.holidayDate(),
+                                request.holidayName(),
+                                id
+                        );
+
+        if (duplicate) {
+            throw new HolidayAlreadyExistsException(
+                    "Another holiday already exists for this date and name."
+            );
+        }
+
         holiday.setHolidayDate(request.holidayDate());
         holiday.setHolidayName(request.holidayName());
         holiday.setHolidayType(request.holidayType());
@@ -134,10 +84,6 @@ public class HolidayService {
         return holidayRepository.save(holiday);
     }
 
-
-    // =========================
-    // ADMIN DELETE HOLIDAY
-    // =========================
     public void deleteHoliday(Long id) {
 
         if (!holidayRepository.existsById(id)) {
@@ -148,5 +94,4 @@ public class HolidayService {
 
         holidayRepository.deleteById(id);
     }
-
 }

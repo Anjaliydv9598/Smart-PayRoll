@@ -33,11 +33,9 @@ function Employees() {
 
             </div>
 
-
             <EmployeeSearch
                 setEmployees={setEmployees}
             />
-
 
             <EmployeeTable
                 employees={employees}

@@ -18,4 +18,10 @@ public interface HolidayRepository extends JpaRepository<Holiday, Long> {
             LocalDate holidayDate,
             String holidayName
     );
+
+    boolean existsByHolidayDateAndHolidayNameAndIdNot(
+            LocalDate holidayDate,
+            String holidayName,
+            Long id
+    );
 }
