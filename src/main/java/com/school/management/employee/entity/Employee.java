@@ -20,17 +20,17 @@ import java.time.LocalDate;
 public abstract class Employee {
 
     @Id
-    @Column(name = "emp_id")
+    @Column(name = "emp_id", nullable = false, unique = true)
     private String empId;
 
     // Employee Details
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "aadhaar_no")
+    @Column(name = "aadhaar_no", nullable = false)
     private String aadhaarNo;
 
-    @Column(name = "pan_no")
+    @Column(name = "pan_no", nullable = false)
     private String panNo;
 
     @Column(name = "email_id")
@@ -48,7 +48,7 @@ public abstract class Employee {
     @Column(name = "husband_name")
     private String husbandName;
 
-    // Salary Components
+    // Salary Components or Employment detaail
     @Column(name = "basic")
     private BigDecimal basic;
 
