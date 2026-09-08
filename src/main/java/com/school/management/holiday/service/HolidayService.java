@@ -138,3 +138,15 @@ public class HolidayService {
     // =========================
     // ADMIN DELETE HOLIDAY
     // =========================
+    public void deleteHoliday(Long id) {
+
+        if (!holidayRepository.existsById(id)) {
+            throw new HolidayNotFoundException(
+                    "Holiday not found with id: " + id
+            );
+        }
+
+        holidayRepository.deleteById(id);
+    }
+
+}
