@@ -1,44 +1,122 @@
-import { useState } from "react";
+const BASE_URL = "http://localhost:8080";
 
-import Navbar from "./components/Navbar";
-import Dashboard from "./pages/Dashboard";
-import Employees from "./pages/Employees";
-import Payroll from "./pages/Payroll";
-import Reports from "./pages/Reports";
+export async function getHolidays(year) {
 
-import "./App.css";
+    const response = await fetch(
+        `${BASE_URL}/api/holidays?year=${year}`
+    );
 
-function App() {
-  const [activePage, setActivePage] = useState("Dashboard");
+    const text = await response.text();
 
-  const renderPage = () => {
-    switch (activePage) {
-      case "Employees":
-        return <Employees />;
+    let data = [];
 
-      case "Payroll":
-        return <Payroll />;
-
-      case "Reports":
-        return <Reports />;
-
-      default:
-        return <Dashboard />;
+    try {
+        data = text ? JSON.parse(text) : [];
+    } catch {
+        throw new Error("Invalid response from server");
     }
-  };
 
-  return (
-      <div className="app">
-        <Navbar
-            activePage={activePage}
-            setActivePage={setActivePage}
-        />
+    if (!response.ok) {
+        throw new Error(
+            data.message || "Failed to load holidays"
+        );
+    }
 
-        <main className="main-content">
-          {renderPage()}
-        </main>
-      </div>
-  );
+    return data;
 }
 
-export default App;
+
+export async function addHoliday(holiday) {
+
+    const response = await fetch(
+        `${BASE_URL}/api/holidays`,
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(holiday)
+        }
+    );
+
+    const text = await response.text();
+
+    let data = {};
+
+    try {
+        data = text ? JSON.parse(text) : {};
+    } catch {
+        throw new Error("Invalid response from server");
+    }
+
+    if (!response.ok) {
+        throw new Error(
+            data.message || "Failed to add holiday"
+        );
+    }
+
+    return data;
+}
+
+
+export async function updateHoliday(id, holiday) {
+
+    const response = await fetch(
+        `${BASE_URL}/api/holidays/${id}`,
+        {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(holiday)
+        }
+    );
+
+    const text = await response.text();
+
+    let data = {};
+
+    try {
+        data = text ? JSON.parse(text) : {};
+    } catch {
+        throw new Error("Invalid response from server");
+    }
+
+    if (!response.ok) {
+        throw new Error(
+            data.message || "Failed to update holiday"
+        );
+    }
+
+    return data;
+}
+
+
+export async function deleteHoliday(id) {
+
+    const response = await fetch(
+        `${BASE_URL}/api/holidays/${id}`,
+        {
+            method: "DELETE"
+        }
+    );
+
+    if (!response.ok) {
+
+        const text = await response.text();
+
+        let data = {};
+
+        try {
+            data = text ? JSON.parse(text) : {};
+        } catch {
+            data = {};
+        }
+
+        throw new Error(
+            data.message || "Failed to delete holiday"
+        );
+    }
+
+    return true;
+}

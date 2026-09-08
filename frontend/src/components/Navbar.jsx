@@ -1,48 +1,78 @@
 function Navbar({ activePage, setActivePage }) {
+
     const menuItems = [
         "Dashboard",
         "Employees",
         "Payroll",
         "Reports",
+        "Holidays"
     ];
 
+
     return (
+
         <nav className="navbar">
 
-            <div className="brand">
-                <div className="brand-icon">🎓</div>
+            <div className="navbar-brand">
+
+                <div className="brand-icon">
+                    💰
+                </div>
 
                 <div>
-                    <h2>Smart Payroll</h2>
-                    <span>School Management</span>
+
+                    <strong>
+                        Smart Payroll
+                    </strong>
+
+                    <span>
+                        School Management
+                    </span>
+
                 </div>
+
             </div>
 
-            <div className="nav-links">
+
+            <div className="navbar-menu">
+
                 {menuItems.map((item) => (
+
                     <button
                         key={item}
-                        className={`nav-link ${
-                            activePage === item ? "active" : ""
-                        }`}
-                        onClick={() => setActivePage(item)}
+                        className={
+                            activePage === item
+                                ? "nav-item active"
+                                : "nav-item"
+                        }
+                        onClick={() =>
+                            setActivePage(item)
+                        }
                     >
-                        {item}
+
+                        {item === "Dashboard" && "📊"}
+
+                        {item === "Employees" && "👥"}
+
+                        {item === "Payroll" && "💰"}
+
+                        {item === "Reports" && "📋"}
+
+                        {item === "Holidays" && "📅"}
+
+                        <span>
+                            {item}
+                        </span>
+
                     </button>
+
                 ))}
-            </div>
 
-            <div className="admin-profile">
-                <div className="admin-avatar">A</div>
-
-                <div>
-                    <strong>Admin</strong>
-                    <span>Administrator</span>
-                </div>
             </div>
 
         </nav>
     );
 }
+
 
 export default Navbar;

@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/holidays")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:5173")
 public class HolidayController {
 
     private final HolidayService holidayService;

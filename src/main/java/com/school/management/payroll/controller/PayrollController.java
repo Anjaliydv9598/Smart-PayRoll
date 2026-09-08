@@ -5,6 +5,9 @@ import com.school.management.payroll.service.PayrollService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/payroll")
 @RequiredArgsConstructor
@@ -18,5 +21,20 @@ public class PayrollController {
             @PathVariable String employeeId) {
 
         return payrollService.generatePayroll(employeeId);
+    }
+
+    @PostMapping("/generate-multiple")
+    public List<Payroll> generateMultiplePayroll(
+            @RequestBody List<String> employeeIds) {
+
+        List<Payroll> payrolls = new ArrayList<>();
+
+        for (String employeeId : employeeIds) {
+            payrolls.add(
+                    payrollService.generatePayroll(employeeId.trim())
+            );
+        }
+
+        return payrolls;
     }
 }
