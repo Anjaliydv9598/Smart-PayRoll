@@ -18,8 +18,20 @@ function Dashboard() {
                 <div className="date-card">
                     <span>📅</span>
                     <div>
-                        <strong>September 2026</strong>
-                        <small>Monday, 7 September</small>
+                        <strong>
+                            {new Date().toLocaleDateString("en-IN", {
+                                month: "long",
+                                year: "numeric"
+                            })}
+                        </strong>
+
+                        <small>
+                            {new Date().toLocaleDateString("en-IN", {
+                                weekday: "long",
+                                day: "numeric",
+                                month: "long"
+                            })}
+                        </small>
                     </div>
                 </div>
             </div>

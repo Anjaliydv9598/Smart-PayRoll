@@ -1,5 +1,6 @@
 const BASE_URL = "http://localhost:8080";
 
+
 export async function getHolidays(year) {
 
     const response = await fetch(

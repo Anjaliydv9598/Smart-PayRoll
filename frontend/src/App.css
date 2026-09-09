@@ -28,6 +28,10 @@ button {
    NAVBAR
 ========================= */
 
+/* =========================
+   NAVBAR
+========================= */
+
 .navbar {
   height: 76px;
   background: white;
@@ -44,7 +48,7 @@ button {
   z-index: 100;
 }
 
-.brand {
+.navbar-brand {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -67,25 +71,26 @@ button {
   font-size: 22px;
 }
 
-.brand h2 {
+.navbar-brand strong {
+  display: block;
   margin: 0;
   font-size: 19px;
 }
 
-.brand span {
+.navbar-brand span {
   color: #8a91a5;
   font-size: 11px;
 }
 
 
-.nav-links {
+.navbar-menu {
   display: flex;
   gap: 8px;
 
   flex: 1;
 }
 
-.nav-link {
+.nav-item {
   border: none;
   background: transparent;
 
@@ -98,50 +103,15 @@ button {
   font-size: 14px;
 }
 
-.nav-link:hover {
+.nav-item:hover {
   background: #f4f5fb;
 }
 
-.nav-link.active {
+.nav-item.active {
   background: #eef0ff;
   color: #5963c8;
   font-weight: 600;
 }
-
-
-.admin-profile {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.admin-avatar {
-  width: 38px;
-  height: 38px;
-
-  border-radius: 50%;
-
-  background: #e9e7ff;
-
-  color: #595db4;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-weight: bold;
-}
-
-.admin-profile strong {
-  display: block;
-  font-size: 13px;
-}
-
-.admin-profile span {
-  font-size: 11px;
-  color: #9298a8;
-}
-
 
 /* =========================
    MAIN
@@ -827,12 +797,11 @@ td {
     gap: 15px;
   }
 
-  .brand {
+  .navbar-brand {
     min-width: auto;
   }
 
-  .brand span,
-  .admin-profile > div:last-child {
+  .navbar-brand span {
     display: none;
   }
 
@@ -862,11 +831,9 @@ td {
     flex-wrap: wrap;
   }
 
-  .nav-links {
+  .navbar-menu {
     order: 3;
-
     width: 100%;
-
     overflow-x: auto;
   }
 
