@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 
 import Navbar from "./components/Navbar";
@@ -7,6 +8,7 @@ import Employees from "./pages/Employees";
 import Payroll from "./pages/Payroll";
 import Reports from "./pages/Reports";
 import Holidays from "./pages/Holidays";
+import Student from "./components/Student";
 
 import "./App.css";
 
@@ -32,6 +34,10 @@ function App() {
 
             case "Holidays":
                 return <Holidays />;
+
+            // Student Pages
+            case "Student":
+                return <Student />;
 
             default:
                 return <Dashboard />;
