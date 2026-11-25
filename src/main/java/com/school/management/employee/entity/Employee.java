@@ -17,7 +17,7 @@ import java.time.LocalDate;
 @Table(name = "school_management_record")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "dtype")
-public abstract class Employee {
+public  class Employee {
 
     @Id
     @Column(name = "emp_id", nullable = false, unique = true)

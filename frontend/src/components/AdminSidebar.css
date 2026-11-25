@@ -1,0 +1,283 @@
+
+/* =====================================
+   RMS SCHOOL SIDEBAR
+===================================== */
+
+.admin-sidebar {
+    width: 260px;
+    min-width: 260px;
+    height: 100vh;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    background: var(--rms-navy);
+    color: var(--rms-white);
+
+    z-index: 1000;
+}
+
+/* Branding */
+
+.sidebar-brand {
+    min-height: 92px;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 13px 15px;
+
+    border-bottom: 1px solid rgba(214, 180, 94, 0.3);
+
+    background: var(--rms-dark-navy);
+}
+
+.rms-school-logo {
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
+    flex-shrink: 0;
+    border-radius: 5px;
+    background: white;
+}
+
+.brand-details {
+    min-width: 0;
+}
+
+.sidebar-brand h2 {
+    font-size: 14px;
+    line-height: 1.3;
+    margin: 0;
+    color: var(--rms-gold);
+    font-weight: 800;
+    letter-spacing: 0.4px;
+}
+
+.sidebar-brand span {
+    display: block;
+    margin-top: 5px;
+    font-size: 10px;
+    color: #DCE7ED;
+}
+
+/* Sidebar scrolling */
+
+.sidebar-menu {
+    flex: 1;
+    overflow-y: auto;
+    padding: 17px 12px;
+}
+
+.sidebar-menu::-webkit-scrollbar {
+    width: 4px;
+}
+
+.sidebar-menu::-webkit-scrollbar-thumb {
+    background: #52758A;
+    border-radius: 10px;
+}
+
+/* Menu groups */
+
+.menu-group {
+    margin-bottom: 23px;
+}
+
+.menu-heading {
+    padding: 0 10px;
+    margin: 0 0 10px;
+
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.1px;
+
+    color: var(--rms-gold);
+}
+
+/* Navigation links */
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    min-height: 42px;
+    padding: 10px 12px;
+    margin-bottom: 4px;
+
+    border-radius: 7px;
+
+    color: #E7EEF2;
+    font-size: 12.5px;
+    font-weight: 500;
+
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.sidebar-link:hover {
+    background: #124A69;
+    color: var(--rms-white);
+}
+
+.sidebar-link.active {
+    background: var(--rms-blue);
+    color: var(--rms-white);
+
+    border-left: 3px solid var(--rms-gold);
+    padding-left: 9px;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+}
+
+/* Bottom section */
+
+.sidebar-bottom {
+    padding: 12px;
+    border-top: 1px solid rgba(214, 180, 94, 0.3);
+    background: var(--rms-dark-navy);
+}
+
+.logout-link:hover {
+    background: #8E3434;
+    color: white;
+}
+
+/* Mobile */
+
+.sidebar-close {
+    display: none;
+    margin-left: auto;
+    border: none;
+    background: transparent;
+    color: white;
+}
+
+.sidebar-overlay {
+    display: none;
+}
+
+@media (max-width: 768px) {
+
+    .admin-sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+
+    .admin-sidebar.sidebar-open {
+        transform: translateX(0);
+    }
+
+    .sidebar-close {
+        display: block;
+    }
+
+    .sidebar-overlay {
+        display: block;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.55);
+        z-index: 999;
+    }
+}
+
+/* =====================================
+   FIX RMS SIDEBAR MENU BUTTONS
+===================================== */
+
+/* Reset browser default button styling */
+
+button.sidebar-link {
+    appearance: none;
+    -webkit-appearance: none;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    width: 100%;
+    min-height: 42px;
+
+    padding: 10px 12px;
+    margin-bottom: 4px;
+
+    background: transparent;
+    border: none;
+    border-radius: 7px;
+
+    color: #E7EEF2;
+    font-family: inherit;
+    font-size: 12.5px;
+    font-weight: 500;
+
+    text-align: left;
+    cursor: pointer;
+
+    box-shadow: none;
+    outline: none;
+
+    transition: all 0.2s ease;
+}
+
+/* Menu text */
+
+button.sidebar-link span {
+    color: inherit;
+    flex: 1;
+}
+
+/* Menu icons */
+
+button.sidebar-link svg {
+    color: inherit;
+    flex-shrink: 0;
+}
+
+/* Hover effect */
+
+button.sidebar-link:hover {
+    background: #124A69;
+    color: #FFFFFF;
+}
+
+/* Active menu */
+
+button.sidebar-link.active {
+    background: #176B91;
+    color: #FFFFFF;
+
+    border-left: 3px solid #D6B45E;
+    padding-left: 9px;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+}
+
+/* Bottom menu */
+
+.sidebar-bottom button.sidebar-link {
+    background: transparent;
+    color: #E7EEF2;
+}
+
+.sidebar-bottom button.sidebar-link:hover {
+    background: #124A69;
+    color: #FFFFFF;
+}
+
+.sidebar-bottom button.logout-link:hover {
+    background: #8E3434;
+    color: #FFFFFF;
+}
+
+/* Section headings */
+
+.menu-heading {
+    color: #D6B45E !important;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.1px;
+}

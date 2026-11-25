@@ -1,58 +1,15 @@
-import { useState } from "react";
 
-import Navbar from "./components/Navbar";
+import React from "react";
 
-import Dashboard from "./pages/Dashboard";
-import Employees from "./pages/Employees";
-import Payroll from "./pages/Payroll";
-import Reports from "./pages/Reports";
-import Holidays from "./pages/Holidays";
+import AdminDashboard from "./admin/AdminDashboard.jsx";
 
 import "./App.css";
 
-
 function App() {
-
-    const [activePage, setActivePage] =
-        useState("Dashboard");
-
-
-    const renderPage = () => {
-
-        switch (activePage) {
-
-            case "Employees":
-                return <Employees />;
-
-            case "Payroll":
-                return <Payroll />;
-
-            case "Reports":
-                return <Reports />;
-
-            case "Holidays":
-                return <Holidays />;
-
-            default:
-                return <Dashboard />;
-        }
-    };
-
 
     return (
         <div className="app">
-
-            <Navbar
-                activePage={activePage}
-                setActivePage={setActivePage}
-            />
-
-            <main className="main-content">
-
-                {renderPage()}
-
-            </main>
-
+            <AdminDashboard />
         </div>
     );
 }

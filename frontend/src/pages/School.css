@@ -1,0 +1,482 @@
+
+/* =========================================
+   RMS WORLD SCHOOL - SCHOOL PROFILE
+========================================= */
+
+.school-page {
+    width: 100%;
+    max-width: none;
+    color: #263238;
+}
+
+/* Page heading */
+
+.school-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 22px;
+}
+
+.school-page-header h2 {
+    color: #073653;
+    font-size: 25px;
+    font-weight: 750;
+    margin: 0 0 7px;
+}
+
+.school-page-header p {
+    color: #718096;
+    font-size: 13px;
+    margin: 0;
+}
+
+.school-status {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 14px;
+    border-radius: 20px;
+    background: #E8F5EC;
+    color: #25834E;
+    font-size: 12px;
+    font-weight: 650;
+    white-space: nowrap;
+}
+
+/* School profile banner */
+
+.school-profile-banner {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 25px 30px;
+    margin-bottom: 22px;
+
+    background: #073653;
+    border: 1px solid #D6B45E;
+    border-radius: 13px;
+
+    color: white;
+    box-shadow: 0 4px 14px rgba(7, 54, 83, 0.08);
+}
+
+.school-profile-banner > img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    background: white;
+    border-radius: 9px;
+    padding: 5px;
+    flex-shrink: 0;
+}
+
+.school-banner-details h2 {
+    color: #D6B45E;
+    font-size: 23px;
+    font-weight: 800;
+    margin: 0 0 10px;
+}
+
+.school-banner-details p {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: #F4F5F6;
+    font-size: 13px;
+    margin: 0 0 12px;
+}
+
+.school-banner-contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.school-banner-contact span {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: #E9D49B;
+    font-size: 12px;
+}
+
+/* Overview cards */
+
+.school-overview-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 17px;
+    margin-bottom: 22px;
+}
+
+.school-overview-card {
+    min-width: 0;
+    background: white;
+    border: 1px solid #E8E0CC;
+    border-top: 3px solid #D6B45E;
+    border-radius: 11px;
+    padding: 19px;
+    box-shadow: 0 3px 12px rgba(7, 54, 83, 0.04);
+}
+
+.school-overview-card > svg {
+    color: #176B91;
+    margin-bottom: 12px;
+}
+
+.school-overview-card span {
+    display: block;
+    color: #718096;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.school-overview-card h3 {
+    color: #073653;
+    font-size: 23px;
+    margin: 9px 0 5px;
+    overflow-wrap: anywhere;
+}
+
+.school-overview-card small {
+    color: #8A98A8;
+    font-size: 11px;
+}
+
+/* Settings card */
+
+.school-settings-card {
+    background: white;
+    border: 1px solid #E8E0CC;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 14px rgba(7, 54, 83, 0.04);
+}
+
+/* Tabs */
+
+.school-tabs {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    overflow-x: auto;
+    padding: 0 16px;
+
+    background: #FFFDF8;
+    border-bottom: 1px solid #E8E0CC;
+}
+
+.school-tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    padding: 17px 15px;
+    min-height: 58px;
+    white-space: nowrap;
+
+    color: #718096;
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.school-tab:hover {
+    color: #176B91;
+    background: #F5F9FA;
+}
+
+.school-tab.active {
+    color: #073653;
+    background: white;
+    border-bottom-color: #D6B45E;
+}
+
+.school-tab.active svg {
+    color: #176B91;
+}
+
+/* Form content */
+
+.school-form-content {
+    padding: 28px;
+    min-height: 320px;
+}
+
+.school-section-heading {
+    margin-bottom: 25px;
+}
+
+.school-section-heading h3 {
+    color: #073653;
+    font-size: 18px;
+    margin: 0 0 7px;
+}
+
+.school-section-heading p {
+    color: #718096;
+    font-size: 12px;
+    margin: 0;
+}
+
+/* Logo */
+
+.school-logo-section {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 25px;
+    padding: 15px;
+    background: #FFFDF8;
+    border: 1px solid #E8E0CC;
+    border-radius: 9px;
+}
+
+.school-logo-section img {
+    width: 65px;
+    height: 65px;
+    object-fit: contain;
+    background: white;
+    border-radius: 7px;
+}
+
+.school-logo-section h4 {
+    color: #073653;
+    font-size: 14px;
+    margin: 0 0 5px;
+}
+
+.school-logo-section p {
+    color: #718096;
+    font-size: 11px;
+    margin: 0;
+}
+
+/* Form grid */
+
+.school-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.school-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+.school-field label {
+    color: #34495E;
+    font-size: 12px;
+    font-weight: 650;
+}
+
+.school-field input,
+.school-field select {
+    width: 100%;
+    min-height: 43px;
+    padding: 10px 12px;
+
+    background: #FFFFFF;
+    border: 1px solid #D9E0E5;
+    border-radius: 7px;
+
+    color: #263238;
+    font-size: 13px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.school-field input:focus,
+.school-field select:focus {
+    border-color: #176B91;
+    box-shadow: 0 0 0 3px rgba(23, 107, 145, 0.10);
+}
+
+/* Information note */
+
+.school-info-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: 25px;
+    padding: 15px;
+    border-radius: 8px;
+    background: #EDF6F8;
+    color: #176B91;
+}
+
+.school-info-note svg {
+    flex-shrink: 0;
+}
+
+.school-info-note p {
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+/* Documents */
+
+.school-document-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.school-document-item {
+    display: grid;
+    grid-template-columns: 30px 1fr minmax(180px, 1fr);
+    align-items: center;
+    gap: 15px;
+    padding: 17px;
+
+    border: 1px solid #E8E0CC;
+    border-radius: 9px;
+    background: #FFFDF8;
+}
+
+.school-document-item > svg {
+    color: #176B91;
+}
+
+.school-document-item h4 {
+    margin: 0 0 5px;
+    color: #073653;
+    font-size: 13px;
+}
+
+.school-document-item p {
+    margin: 0;
+    color: #718096;
+    font-size: 11px;
+}
+
+.school-document-item input {
+    width: 100%;
+    min-width: 0;
+    padding: 10px;
+    border: 1px solid #D9E0E5;
+    border-radius: 6px;
+    font-size: 12px;
+}
+
+/* Footer */
+
+.school-form-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 15px;
+
+    padding: 18px 28px;
+    border-top: 1px solid #E8E0CC;
+    background: #FFFDF8;
+}
+
+.school-save-button {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 12px 21px;
+
+    background: #073653;
+    color: white;
+
+    border: 1px solid #D6B45E;
+    border-radius: 7px;
+
+    font-size: 13px;
+    font-weight: 650;
+}
+
+.school-save-button:hover {
+    background: #176B91;
+}
+
+.school-saved-message {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: #25834E;
+    font-size: 12px;
+}
+
+/* Responsive */
+
+@media (max-width: 1100px) {
+    .school-overview-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .school-page-header {
+        align-items: flex-start;
+    }
+
+    .school-profile-banner {
+        padding: 18px;
+        gap: 15px;
+    }
+
+    .school-profile-banner > img {
+        width: 75px;
+        height: 75px;
+    }
+
+    .school-banner-details h2 {
+        font-size: 18px;
+    }
+
+    .school-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .school-form-content {
+        padding: 20px 15px;
+    }
+
+    .school-document-item {
+        grid-template-columns: 28px 1fr;
+    }
+
+    .school-document-item input {
+        grid-column: 1 / -1;
+    }
+
+    .school-form-footer {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 450px) {
+    .school-overview-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .school-profile-banner {
+        align-items: flex-start;
+    }
+
+    .school-profile-banner > img {
+        width: 58px;
+        height: 58px;
+    }
+
+    .school-status {
+        font-size: 10px;
+        padding: 7px;
+    }
+}

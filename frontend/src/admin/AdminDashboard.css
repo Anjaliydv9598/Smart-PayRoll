@@ -1,0 +1,112 @@
+
+/* =====================================
+   RMS ADMIN DASHBOARD LAYOUT
+===================================== */
+
+.admin-layout {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    background: var(--rms-page);
+}
+
+/* Main content area */
+
+.admin-main {
+    flex: 1;
+    min-width: 0;
+    width: calc(100% - 260px);
+    margin-left: 260px;
+}
+
+/* Dashboard content */
+
+.admin-content {
+    position: relative;
+    isolation: isolate;
+    width: 100%;
+    max-width: none;
+    min-height: calc(100vh - 75px);
+    padding: 30px 34px;
+    background: var(--rms-page);
+}
+
+/* RMS school logo watermark */
+
+.admin-content::before {
+    content: "";
+    position: fixed;
+    top: 55%;
+    left: calc(50% + 130px);
+
+    transform: translate(-50%, -50%);
+
+    width: 440px;
+    height: 440px;
+
+    background-image: url("/images/rms-world-school-shield.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+
+    opacity: 0.065;
+
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Keep dashboard content above watermark */
+
+.admin-content > * {
+    position: relative;
+}
+
+/* Responsive layout */
+
+@media (max-width: 1100px) {
+    .admin-content {
+        padding: 24px;
+    }
+
+    .admin-content::before {
+        width: 350px;
+        height: 350px;
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-main {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .admin-content {
+        padding: 18px 14px;
+    }
+
+    .admin-content::before {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 280px;
+        height: 280px;
+        opacity: 0.045;
+    }
+}
+.module-placeholder {
+    width: 100%;
+    min-height: 250px;
+    padding: 30px;
+    background: #FFFFFF;
+    border: 1px solid #E8E0CC;
+    border-radius: 12px;
+}
+
+.module-placeholder h2 {
+    color: #073653;
+    margin-bottom: 10px;
+}
+
+.module-placeholder p {
+    color: #718096;
+}
