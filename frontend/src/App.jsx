@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import AdminDashboard from "./admin/AdminDashboard.jsx";
 import RoleSelection from "./components/RoleSelection.jsx";
 import StudentLogin from "./components/StudentLogin.jsx";
+import EmployeeManagement from "./pages/EmployeeManagement.jsx";
 import "./App.css";
 
 function App() {
@@ -17,7 +18,19 @@ function App() {
                 />
             )}
 
-            {activePage === "admin" && <AdminDashboard />}
+            {activePage === "admin" && (
+                <AdminDashboard
+                    onEmployeeManagementClick={() =>
+                        setActivePage("employees")
+                    }
+                />
+            )}
+
+            {activePage === "employees" && (
+                <EmployeeManagement
+                    onBack={() => setActivePage("admin")}
+                />
+            )}
 
             {activePage === "student" && <StudentLogin />}
         </div>

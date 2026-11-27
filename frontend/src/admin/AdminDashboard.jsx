@@ -11,6 +11,7 @@ import DashboardHome from "../pages/DashboardHome.jsx";
 import SchoolPage from "../pages/School.jsx";
 import MasterDataNumberSeries from "../pages/MasterDataNumberSeries.jsx";
 import Department from "../pages/Department.jsx";
+import EmployeeManagement from "../pages/EmployeeManagement.jsx";
 
 // Existing Pages
 import Employees from "../pages/Employees.jsx";
@@ -48,8 +49,9 @@ const AdminDashboard = () => {
                     />
                 );
 
+            // Employee Management
             case "Employee Data Creation":
-                return <Employees />;
+                return <EmployeeManagement />;
 
             case "Staff ID & Password":
                 return (
@@ -134,6 +136,7 @@ const AdminDashboard = () => {
                 </main>
 
             </div>
+
         </div>
     );
 };
