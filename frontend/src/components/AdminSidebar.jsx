@@ -4,6 +4,7 @@ import React from "react";
 import {
     LayoutDashboard,
     School,
+    GraduationCap,
     Database,
     Users,
     Building2,
@@ -41,6 +42,12 @@ const menuGroups = [
         items: [
             { name: "Employee Data Creation", icon: Users },
             { name: "Staff ID & Password", icon: UserRoundCog }
+        ]
+    },
+    {
+        title: "STUDENT MANAGEMENT",
+        items: [
+            { name: "Student", icon: GraduationCap }
         ]
     },
     {

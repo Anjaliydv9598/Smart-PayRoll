@@ -1,6 +1,7 @@
 
 package com.school.management.employee.service;
 
+import com.school.management.admin.numberseries.service.EmployeeNumberSeriesService;
 import com.school.management.employee.dto.EmployeeRequest;
 import com.school.management.employee.dto.EmployeeSearchRequest;
 import com.school.management.employee.entity.Employee;
@@ -9,6 +10,7 @@ import com.school.management.employee.repository.EmployeeRepository;
 import com.school.management.exception.EmployeeNotFoundException;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.List;
@@ -17,41 +19,42 @@ import java.util.List;
 public class EmployeeService {
 
     private final EmployeeRepository employeeRepository;
+    private final EmployeeNumberSeriesService numberSeriesService;
 
-    public EmployeeService(EmployeeRepository employeeRepository) {
+    public EmployeeService(
+            EmployeeRepository employeeRepository,
+            EmployeeNumberSeriesService numberSeriesService) {
+
         this.employeeRepository = employeeRepository;
+        this.numberSeriesService = numberSeriesService;
     }
 
-    // Generate Employee ID
-    private String generateEmployeeId(Role role) {
+    // Map Employee Role to Number Series Department
+    private String getDepartmentForRole(Role role) {
 
-        String prefix;
-
-        switch (role) {
-
-            case TEACHER -> prefix = "T";
-
-            case PRINCIPAL -> prefix = "P";
-
-            case SUPPORT_STAFF -> prefix = "SS";
-
-            case ACCOUNTS_STAFF -> prefix = "AS";
-
-            default -> throw new IllegalArgumentException(
-                    "Invalid employee role"
+        if (role == null) {
+            throw new IllegalArgumentException(
+                    "Employee role is required"
             );
         }
 
-        int nextNumber = employeeRepository
-                .findByEmpIdStartingWith(prefix)
-                .size() + 1;
-
-        return prefix + String.format("%03d", nextNumber);
+        return switch (role) {
+            case TEACHER -> "TEACHER";
+            case PRINCIPAL -> "PRINCIPAL";
+            case ACCOUNTS_STAFF -> "ACCOUNTS_STAFF";
+            case SUPPORT_STAFF -> "SUPPORT_STAFF";
+        };
     }
 
-
-    // Save Employee
+    // Save Employee with automatically generated Employee ID
+    @Transactional
     public Employee saveEmployee(EmployeeRequest request) {
+
+        if (request == null) {
+            throw new IllegalArgumentException(
+                    "Employee request is required"
+            );
+        }
 
         Employee employee = new Employee();
 
@@ -88,17 +91,25 @@ public class EmployeeService {
         employee.setLeavingDate(request.getLeavingDate());
         employee.setTaxLiability(request.getTaxLiability());
 
-        // Generate Employee ID
-        employee.setEmpId(
-                generateEmployeeId(request.getRole())
-        );
+        // Generate Employee ID using Admin Number Series
+        String department = getDepartmentForRole(request.getRole());
+
+        String employeeId =
+                numberSeriesService.generateNextEmployeeId(department);
+
+        employee.setEmpId(employeeId);
 
         return employeeRepository.save(employee);
     }
 
-
     // Search Employees
     public List<Employee> searchEmployees(EmployeeSearchRequest request) {
+
+        if (request == null) {
+            throw new IllegalArgumentException(
+                    "Search request is required"
+            );
+        }
 
         // Search by Employee ID
         if (request.getEmpIds() != null &&
@@ -122,7 +133,6 @@ public class EmployeeService {
             return employees;
         }
 
-
         // Search by Joining Date
         if (request.getJoiningDate() != null) {
 
@@ -139,7 +149,6 @@ public class EmployeeService {
 
             return employees;
         }
-
 
         // Search by Leaving Date
         if (request.getLeavingDate() != null) {
@@ -158,7 +167,6 @@ public class EmployeeService {
             return employees;
         }
 
-
         // Search by Name
         if (request.getName() != null &&
                 !request.getName().isBlank()) {
@@ -176,7 +184,6 @@ public class EmployeeService {
 
             return employees;
         }
-
 
         throw new IllegalArgumentException(
                 "Please enter at least one search criteria"
